@@ -1,0 +1,28 @@
+from flask import Flask
+import random
+
+app = Flask(__name__)
+
+list_fakta = [
+    "Kebanyakan orang yang menderita kecanduan teknologi mengalami stres yang kuat ketika mereka berada di luar area jangkauan jaringan atau tidak dapat menggunakan perangkat mereka",
+    "Menurut sebuah studi yang dilakukan pada tahun 2018, lebih dari 50% orang berusia 18 hingga 34 tahun menganggap diri mereka bergantung pada ponsel pintar mereka."
+]
+
+@app.route("/")
+def hello_world():
+    angka = random.randint(1, 10)
+    return '<h1>Hello, World!</h1><a href="/fakta_acak">Ayo Klik!</a>' + str(angka)
+
+@app.route("/fakta_acak")
+def fakta_acak():
+    return f'<p>{random.choice(list_fakta)}</p>'
+    # return '<p>' + random.choice(list_fakta) + '</p>'
+    
+@app.route("/rahasia")
+def generate_password():
+    characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()"
+    password_generated = "".join(random.choices(characters, k=12))
+    return f'<h1>🔐 Kata Sandi Kamu:</h1><h2 style="color:blue;">{password_generated}</h2><br><a href="/">Kembali ke Home</a>'
+
+app.run(debug=True)
+(Running on http://127.0.0.1:5000)
