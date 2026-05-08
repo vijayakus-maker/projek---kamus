@@ -57,8 +57,8 @@ def submit_form():
 
     with open('form.txt', 'a',) as f:
         f.write(name + '\n')
-        f.write(email+ '\n')
-        f.write(address+ '\n')
+        f.write(email + '\n')
+        f.write(address + '\n')
         f.write(date + '\n')
     # Anda dapat menyimpan data Anda atau mengirimkannya melalui email
     return render_template('form_result.html', 
